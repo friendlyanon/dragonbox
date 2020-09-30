@@ -31,7 +31,6 @@ function(add_test)
   endif()
 
   set(target "${TEST_NAMESPACE}_${TEST_NAME}")
-  set(test_name "${TEST_NAMESPACE}.${TEST_NAME}")
 
   add_executable(${target} source/${TEST_NAME}.cpp)
 
@@ -43,7 +42,7 @@ function(add_test)
 
   target_compile_features(${target} PRIVATE cxx_std_17)
 
-  _add_test(NAME ${test_name} COMMAND ${target})
+  _add_test(NAME "${TEST_NAMESPACE}.${TEST_NAME}" COMMAND ${target})
 endfunction()
 
 add_test(NAMESPACE verify NAME verify_compressed_cache)
